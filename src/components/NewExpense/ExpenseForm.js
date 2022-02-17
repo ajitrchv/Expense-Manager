@@ -47,7 +47,7 @@ const ExpenseForm = (props) => {
  
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
  
@@ -57,7 +57,7 @@ const ExpenseForm = (props) => {
     setEnteredDate('');
   };
  
-  function addButtonHandler() {
+  function showHideHandler() {
 
     setXPSwitch(!xpSwitch)
     
@@ -66,7 +66,7 @@ const ExpenseForm = (props) => {
  
  
  
-  let addButton = <div><button onClick={addButtonHandler}>Add New Expense</button></div>
+  let addButton = <div><button onClick={showHideHandler}>Add New Expense</button></div>
  
   if(xpSwitch){
   return (
@@ -102,7 +102,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className='new-expense__actions'>
-      <button onClick={addButtonHandler}>cancel</button>
+      <button onClick={showHideHandler}>cancel</button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>
