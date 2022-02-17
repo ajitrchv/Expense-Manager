@@ -5,3 +5,19 @@
   width: 50rem;
   max-width: 95%;
 }
+.filteredexp{
+  padding: 1rem;
+  font-size: large;
+  font-weight: bolder;
+  margin: 2rem auto;
+  width: 50rem;
+  max-width: 95%;
+  color:rgb(255, 255, 255);
+  align-items: flex-end;
+  position: inherit;
+  text-align: center;
+  font-weight: bold;
+  background-color: #f72553;
+  border: 2px solid white;
+  border-radius: 12px;
+}
