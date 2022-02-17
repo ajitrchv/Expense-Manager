@@ -1,55 +1,31 @@
 import React, { useState } from "react";
+import Card from "../UI/Card";
+import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
-import ExpenseItem from "./Expenses/ExpenseItem";
-import ExpensesFilter from "./Expenses/ExpenseFilter.js";
-import Card from "../Card";
+import ExpensesList from "./ExpensesList";
 
-//chumma some comments for the VSCode Push to VSCODE PUSH branch
-function Expenses(props) {
-  const [filteredYear, setFilteredYear] = useState("2021");
+const Expenses = (props) => {
+  const [filteredYear, setFilteredYear] = useState("2020");
+
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
+  const filteredExpenses = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+
   return (
     <div>
-      <Card classname="expenses">
+      <Card className="expenses">
         <ExpensesFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {props.items.map((expense) => (
-          <ExpenseItem
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
-        
+        <ExpensesList List={filteredExpenses}/>
       </Card>
     </div>
   );
-}
-export default Expenses;
+};
 
-/*
-<ExpenseItem
-          title={props.expenses[0].title}
-          amount={props.expenses[0].amount}
-          date={props.expenses[0].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.expenses[1].title}
-          amount={props.expenses[1].amount}
-          date={props.expenses[1].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.expenses[2].title}
-          amount={props.expenses[2].amount}
-          date={props.expenses[2].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={props.expenses[3].title}
-          amount={props.expenses[3].amount}
-          date={props.expenses[3].date}
-        ></ExpenseItem>
-*/ 
+export default Expenses;
