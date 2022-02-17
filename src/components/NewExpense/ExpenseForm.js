@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-
+     
 import './ExpenseForm.css';
-
+ 
 const ExpenseForm = (props) => {
+ 
+ 
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
+  const [xpSwitch, setXPSwitch] = useState(0);
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: '',
   //   enteredAmount: '',
   //   enteredDate: '',
   // });
-
+ 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
     // setUserInput({
@@ -22,7 +25,7 @@ const ExpenseForm = (props) => {
     //   return { ...prevState, enteredTitle: event.target.value };
     // });
   };
-
+ 
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
     // setUserInput({
@@ -30,7 +33,7 @@ const ExpenseForm = (props) => {
     //   enteredAmount: event.target.value,
     // });
   };
-
+ 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
     // setUserInput({
@@ -38,22 +41,34 @@ const ExpenseForm = (props) => {
     //   enteredDate: event.target.value,
     // });
   };
-
+ 
   const submitHandler = (event) => {
     event.preventDefault();
-
+ 
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
-
+ 
     props.onSaveExpenseData(expenseData);
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
   };
+ 
+  function addButtonHandler() {
 
+    setXPSwitch(!xpSwitch)
+    
+  }
+ 
+ 
+ 
+ 
+  let addButton = <div><button onClick={addButtonHandler}>Add New Expense</button></div>
+ 
+  if(xpSwitch){
   return (
     <form onSubmit={submitHandler}>
       <div className='new-expense__controls'>
@@ -87,10 +102,14 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className='new-expense__actions'>
+      <button onClick={addButtonHandler}>cancel</button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>
   );
-};
-
+  }
+  else return addButton;
+  };
+ 
 export default ExpenseForm;
+ 
