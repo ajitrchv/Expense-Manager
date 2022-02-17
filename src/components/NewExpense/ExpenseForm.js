@@ -34,7 +34,8 @@ function ExpenseForm(props) {
     // });
   };
 
-  function SubmitHandler(event){
+  const SubmitHandler = (event) => {
+    console.log('inside submit handler in expenseform---------------------');
     event.preventDefault(); //prevents request sending and prevents reload thus.
     const expenseData = {
         title: enteredTitle,
@@ -49,7 +50,7 @@ function ExpenseForm(props) {
   };
 
   return (
-    <form>
+    <form onSubmit={SubmitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
@@ -77,7 +78,7 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="submit" onSubmit={SubmitHandler}>Add Expense</button>
+        <button type="submit">Add Expense</button>
       </div>
     </form>
   );

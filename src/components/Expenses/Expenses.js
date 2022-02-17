@@ -1,24 +1,38 @@
-import React,{ useState } from "react";
-import "./Expenses/Expenses.css";
-
+import React, { useState } from "react";
+import "./Expenses.css";
 import ExpenseItem from "./Expenses/ExpenseItem";
 import ExpensesFilter from "./Expenses/ExpenseFilter.js";
-import "./Card";
+import Card from "../Card";
 
-import Card from "./Card";
-
-//chumma some comments for the VSCode Push
+//chumma some comments for the VSCode Push to VSCODE PUSH branch
 function Expenses(props) {
-  const [filteredYear, setFilteredYear] = useState('2021')
-  const filterChangeHandler = (selectedYear) =>
-  {
-   setFilteredYear(selectedYear);
-  }
+  const [filteredYear, setFilteredYear] = useState("2021");
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
   return (
     <div>
       <Card classname="expenses">
-      <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler}/>
-        <ExpenseItem
+        <ExpensesFilter
+          selected={filteredYear}
+          onChangeFilter={filterChangeHandler}
+        />
+        {props.items.map((expense) => (
+          <ExpenseItem
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+          />
+        ))}
+        
+      </Card>
+    </div>
+  );
+}
+export default Expenses;
+
+/*
+<ExpenseItem
           title={props.expenses[0].title}
           amount={props.expenses[0].amount}
           date={props.expenses[0].date}
@@ -38,8 +52,4 @@ function Expenses(props) {
           amount={props.expenses[3].amount}
           date={props.expenses[3].date}
         ></ExpenseItem>
-      </Card>
-    </div>
-  );
-}
-export default Expenses;
+*/ 
